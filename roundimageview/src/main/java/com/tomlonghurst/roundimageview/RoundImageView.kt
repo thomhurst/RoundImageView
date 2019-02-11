@@ -2,10 +2,13 @@ package com.tomlonghurst.roundimageview
 
 import android.content.Context
 import android.graphics.Color
+import android.graphics.PorterDuff
 import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import com.tomlonghurst.roundimageview.extensions.onGlobalLayout
 import com.tomlonghurst.roundimageview.extensions.remove
 import kotlinx.android.synthetic.main.riv_layout.view.*
@@ -98,6 +101,10 @@ class RoundImageView : FrameLayout {
             picture_card_circle.setCardBackgroundColor(value)
         }
 
+    private var placeholderColor: Int = Color.WHITE
+
+    private var placeholderDrawable: Int = -1
+
     override fun onFinishInflate() {
         super.onFinishInflate()
 
@@ -106,7 +113,13 @@ class RoundImageView : FrameLayout {
         GlobalScope.launch(Dispatchers.Main) {
             image?.remove()
             inner_circle_layout.addView(image)
-            image?.drawable
+
+            if(placeholderDrawable != -1) {
+                val drawable = ContextCompat.getDrawable(context, placeholderDrawable)?.apply {
+                    setColorFilter(placeholderColor, PorterDuff.Mode.SRC_IN)
+                }
+                image?.setImageDrawable(drawable)
+            }
         }
     }
 
@@ -117,6 +130,8 @@ class RoundImageView : FrameLayout {
             borderWidth = a.getDimension(R.styleable.RoundImageView_riv_border_width, 0f)
             borderColor = a.getColor(R.styleable.RoundImageView_riv_border_color, Color.WHITE)
             cardBackgroundColor = a.getColor(R.styleable.RoundImageView_riv_circle_background_color, Color.WHITE)
+            placeholderColor = a.getColor(R.styleable.RoundImageView_riv_circle_placeholder_color, Color.GRAY)
+            placeholderDrawable = a.getResourceId(R.styleable.RoundImageView_riv_circle_placeholder_drawable, -1)
 
             a.recycle()
         }

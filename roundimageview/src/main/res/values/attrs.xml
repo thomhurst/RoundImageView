@@ -4,5 +4,7 @@
         <attr name="riv_border_width" format="dimension" />
         <attr name="riv_border_color" format="color" />
         <attr name="riv_circle_background_color" format="color" />
+        <attr name="riv_circle_placeholder_color" format="color" />
+        <attr name="riv_circle_placeholder_drawable" format="reference" />
     </declare-styleable>
 </resources>
