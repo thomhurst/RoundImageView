@@ -209,12 +209,12 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:riv_border_color="@android:color/white"
                 app:riv_circle_background_color="@android:color/black"
+                                                            app:riv_circle_placeholder_color="@android:color/white"
+                                                            app:riv_circle_placeholder_drawable="@drawable/ic_baseline_accessibility_new_24px"
                 app:riv_border_width="1.5dp">
                 <ImageView
                     android:layout_height="match_parent"
                     android:layout_width="match_parent"
-                    android:src="@drawable/ic_baseline_accessibility_new_24px"
-                    android:tint="@android:color/white"
                     android:scaleType="centerCrop"/>
             </com.tomlonghurst.roundimageview.RoundImageView>
 
@@ -227,12 +227,12 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:riv_border_color="@android:color/white"
                 app:riv_circle_background_color="@android:color/holo_red_dark"
+                                                            app:riv_circle_placeholder_color="@android:color/white"
+                                                            app:riv_circle_placeholder_drawable="@drawable/ic_baseline_accessibility_new_24px"
                 app:riv_border_width="1.5dp">
                 <ImageView
                     android:layout_height="match_parent"
                     android:layout_width="match_parent"
-                    android:src="@drawable/ic_baseline_accessibility_new_24px"
-                    android:tint="@android:color/white"
                     android:scaleType="centerCrop"/>
             </com.tomlonghurst.roundimageview.RoundImageView>
 
@@ -245,12 +245,12 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:riv_border_color="@android:color/white"
                 app:riv_circle_background_color="@android:color/holo_blue_dark"
+                                                            app:riv_circle_placeholder_color="@android:color/white"
+                                                            app:riv_circle_placeholder_drawable="@drawable/ic_baseline_accessibility_new_24px"
                 app:riv_border_width="1.5dp">
                 <ImageView
                     android:layout_height="match_parent"
                     android:layout_width="match_parent"
-                    android:src="@drawable/ic_baseline_accessibility_new_24px"
-                    android:tint="@android:color/white"
                     android:scaleType="centerCrop"/>
             </com.tomlonghurst.roundimageview.RoundImageView>
 
@@ -263,12 +263,12 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:riv_border_color="@android:color/white"
                 app:riv_circle_background_color="@android:color/holo_green_dark"
+                                                            app:riv_circle_placeholder_color="@android:color/white"
+                                                            app:riv_circle_placeholder_drawable="@drawable/ic_baseline_accessibility_new_24px"
                 app:riv_border_width="1.5dp">
                 <ImageView
                     android:layout_height="match_parent"
                     android:layout_width="match_parent"
-                    android:src="@drawable/ic_baseline_accessibility_new_24px"
-                    android:tint="@android:color/white"
                     android:scaleType="centerCrop"/>
             </com.tomlonghurst.roundimageview.RoundImageView>
 
@@ -281,12 +281,12 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:riv_border_color="@android:color/white"
                 app:riv_circle_background_color="@android:color/holo_orange_dark"
+                                                            app:riv_circle_placeholder_color="@android:color/white"
+                                                            app:riv_circle_placeholder_drawable="@drawable/ic_baseline_accessibility_new_24px"
                 app:riv_border_width="1.5dp">
                 <ImageView
                     android:layout_height="match_parent"
                     android:layout_width="match_parent"
-                    android:src="@drawable/ic_baseline_accessibility_new_24px"
-                    android:tint="@android:color/white"
                     android:scaleType="centerCrop"/>
             </com.tomlonghurst.roundimageview.RoundImageView>
 
@@ -387,8 +387,6 @@
 
         </LinearLayout>
 
-        <!--PNG Drawable-->
-
         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
             android:orientation="horizontal">
 
@@ -405,7 +403,7 @@
                 <ImageView
                     android:layout_height="24dp"
                     android:layout_width="24dp"
-                    android:src="@drawable/wireless"
+                    android:src="@drawable/ic_baseline_sentiment_very_satisfied_24px"
                     android:tint="@android:color/white"
                     android:scaleType="centerInside"/>
             </com.tomlonghurst.roundimageview.RoundImageView>
@@ -423,7 +421,7 @@
                 <ImageView
                     android:layout_height="24dp"
                     android:layout_width="24dp"
-                    android:src="@drawable/wireless"
+                    android:src="@drawable/ic_baseline_sentiment_very_satisfied_24px"
                     android:tint="@android:color/white"
                     android:scaleType="centerInside"/>
             </com.tomlonghurst.roundimageview.RoundImageView>
@@ -441,7 +439,7 @@
                 <ImageView
                     android:layout_height="24dp"
                     android:layout_width="24dp"
-                    android:src="@drawable/wireless"
+                    android:src="@drawable/ic_baseline_sentiment_very_satisfied_24px"
                     android:tint="@android:color/white"
                     android:scaleType="centerInside"/>
             </com.tomlonghurst.roundimageview.RoundImageView>
@@ -459,7 +457,7 @@
                 <ImageView
                     android:layout_height="24dp"
                     android:layout_width="24dp"
-                    android:src="@drawable/wireless"
+                    android:src="@drawable/ic_baseline_sentiment_very_satisfied_24px"
                     android:tint="@android:color/white"
                     android:scaleType="centerInside"/>
             </com.tomlonghurst.roundimageview.RoundImageView>
@@ -477,7 +475,7 @@
                 <ImageView
                     android:layout_height="24dp"
                     android:layout_width="24dp"
-                    android:src="@drawable/wireless"
+                    android:src="@drawable/ic_baseline_sentiment_very_satisfied_24px"
                     android:tint="@android:color/white"
                     android:scaleType="centerInside"/>
             </com.tomlonghurst.roundimageview.RoundImageView>

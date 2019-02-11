@@ -4,11 +4,11 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.util.AttributeSet
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
-import androidx.core.graphics.drawable.DrawableCompat
 import com.tomlonghurst.roundimageview.extensions.onGlobalLayout
 import com.tomlonghurst.roundimageview.extensions.remove
 import kotlinx.android.synthetic.main.riv_layout.view.*
@@ -20,6 +20,7 @@ import kotlin.math.roundToInt
 
 class RoundImageView : FrameLayout {
 
+    private lateinit var view: View
     var image: ImageView? = null
 
     constructor(context: Context) : super(context) {
@@ -33,9 +34,7 @@ class RoundImageView : FrameLayout {
     }
 
     private fun init(attrs: AttributeSet?, defStyleAttr: Int) {
-        View.inflate(context, R.layout.riv_layout, this)
-
-        getImage()
+        view = LayoutInflater.from(context).inflate(R.layout.riv_layout, this)
 
         getAttributes(attrs, defStyleAttr)
 
@@ -101,7 +100,7 @@ class RoundImageView : FrameLayout {
             picture_card_circle.setCardBackgroundColor(value)
         }
 
-    private var placeholderColor: Int = -1
+    private var placeholderColor: Int = Int.MIN_VALUE
 
     private var placeholderDrawable: Int = -1
 
@@ -110,16 +109,21 @@ class RoundImageView : FrameLayout {
 
         getImage()
 
-        GlobalScope.launch(Dispatchers.Main) {
-            image?.remove()
-            inner_circle_layout.addView(image)
+        val image = image ?: throw IllegalStateException("No ImageView has been added to the RoundImageView")
 
-            if(placeholderDrawable != -1) {
-                val drawable = ContextCompat.getDrawable(context, placeholderDrawable)
-                if(placeholderColor != -1) {
-                    drawable?.setColorFilter(placeholderColor, PorterDuff.Mode.SRC_IN)
+        GlobalScope.launch(Dispatchers.Main) {
+            image.apply {
+                remove()
+                view.inner_circle_layout.addView(image)
+
+
+                if (placeholderDrawable != -1) {
+                    val drawable = ContextCompat.getDrawable(context, placeholderDrawable)?.mutate()
+                    if (placeholderColor != Int.MIN_VALUE) {
+                        drawable?.setColorFilter(placeholderColor, PorterDuff.Mode.SRC_IN)
+                    }
+                    image.setImageDrawable(drawable)
                 }
-                image?.setImageDrawable(drawable)
             }
         }
     }
@@ -130,7 +134,7 @@ class RoundImageView : FrameLayout {
         borderWidth = a.getDimension(R.styleable.RoundImageView_riv_border_width, 0f)
         borderColor = a.getColor(R.styleable.RoundImageView_riv_border_color, Color.WHITE)
         cardBackgroundColor = a.getColor(R.styleable.RoundImageView_riv_circle_background_color, Color.WHITE)
-        placeholderColor = a.getColor(R.styleable.RoundImageView_riv_circle_placeholder_color, -1)
+        placeholderColor = a.getColor(R.styleable.RoundImageView_riv_circle_placeholder_color, Int.MIN_VALUE)
         placeholderDrawable = a.getResourceId(R.styleable.RoundImageView_riv_circle_placeholder_drawable, -1)
 
         a.recycle()
