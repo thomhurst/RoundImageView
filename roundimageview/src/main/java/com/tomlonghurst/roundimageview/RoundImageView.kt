@@ -17,7 +17,9 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlin.math.roundToInt
 
-
+/**
+ * A view to show Round Images that works with vectors.
+ */
 class RoundImageView : FrameLayout {
 
     private lateinit var view: View
@@ -73,10 +75,13 @@ class RoundImageView : FrameLayout {
     }
 
     private fun setInnerCardSize(borderWidth: Float) {
+        val mainHeight = height
+        val mainWidth = width
+        
         picture_card_circle.apply {
             onGlobalLayout {
-                val newHeight = this@RoundImageView.height.minus(borderWidth.times(2).roundToInt())
-                val newWidth = this@RoundImageView.width.minus(borderWidth.times(2).roundToInt())
+                val newHeight = mainHeight.minus(borderWidth.times(2).roundToInt())
+                val newWidth = mainWidth.minus(borderWidth.times(2).roundToInt())
                 layoutParams.height = newHeight
                 layoutParams.width = newWidth
 
