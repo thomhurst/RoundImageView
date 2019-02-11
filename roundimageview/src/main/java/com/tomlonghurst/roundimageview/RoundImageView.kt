@@ -101,7 +101,7 @@ class RoundImageView : FrameLayout {
             picture_card_circle.setCardBackgroundColor(value)
         }
 
-    private var placeholderColor: Int = Color.WHITE
+    private var placeholderColor: Int = -1
 
     private var placeholderDrawable: Int = -1
 
@@ -115,8 +115,9 @@ class RoundImageView : FrameLayout {
             inner_circle_layout.addView(image)
 
             if(placeholderDrawable != -1) {
-                val drawable = ContextCompat.getDrawable(context, placeholderDrawable)?.apply {
-                    setColorFilter(placeholderColor, PorterDuff.Mode.SRC_IN)
+                val drawable = ContextCompat.getDrawable(context, placeholderDrawable)
+                if(placeholderColor != -1) {
+                    drawable?.setColorFilter(placeholderColor, PorterDuff.Mode.SRC_IN)
                 }
                 image?.setImageDrawable(drawable)
             }
@@ -124,16 +125,14 @@ class RoundImageView : FrameLayout {
     }
 
     private fun getAttributes(attrs: AttributeSet?, defStyleAttr: Int) {
-        attrs?.let { attributeSet ->
-            val a = context.obtainStyledAttributes(attrs, R.styleable.RoundImageView, defStyleAttr, 0)
+        val a = context.obtainStyledAttributes(attrs, R.styleable.RoundImageView, defStyleAttr, 0)
 
-            borderWidth = a.getDimension(R.styleable.RoundImageView_riv_border_width, 0f)
-            borderColor = a.getColor(R.styleable.RoundImageView_riv_border_color, Color.WHITE)
-            cardBackgroundColor = a.getColor(R.styleable.RoundImageView_riv_circle_background_color, Color.WHITE)
-            placeholderColor = a.getColor(R.styleable.RoundImageView_riv_circle_placeholder_color, Color.GRAY)
-            placeholderDrawable = a.getResourceId(R.styleable.RoundImageView_riv_circle_placeholder_drawable, -1)
+        borderWidth = a.getDimension(R.styleable.RoundImageView_riv_border_width, 0f)
+        borderColor = a.getColor(R.styleable.RoundImageView_riv_border_color, Color.WHITE)
+        cardBackgroundColor = a.getColor(R.styleable.RoundImageView_riv_circle_background_color, Color.WHITE)
+        placeholderColor = a.getColor(R.styleable.RoundImageView_riv_circle_placeholder_color, -1)
+        placeholderDrawable = a.getResourceId(R.styleable.RoundImageView_riv_circle_placeholder_drawable, -1)
 
-            a.recycle()
-        }
+        a.recycle()
     }
 }
