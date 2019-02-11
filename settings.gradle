@@ -1,1 +1,4 @@
-include ':app', ':roundimageview'
+include ':roundimageview'
+if (!System.env.JITPACK) {
+    include ':app'
+}
