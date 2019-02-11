@@ -75,13 +75,10 @@ class RoundImageView : FrameLayout {
     }
 
     private fun setInnerCardSize(borderWidth: Float) {
-        val mainHeight = height
-        val mainWidth = width
-        
         picture_card_circle.apply {
             onGlobalLayout {
-                val newHeight = mainHeight.minus(borderWidth.times(2).roundToInt())
-                val newWidth = mainWidth.minus(borderWidth.times(2).roundToInt())
+                val newHeight = view.height.minus(borderWidth.times(2).roundToInt())
+                val newWidth = view.width.minus(borderWidth.times(2).roundToInt())
                 layoutParams.height = newHeight
                 layoutParams.width = newWidth
 
