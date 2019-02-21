@@ -8,6 +8,8 @@ Featuring:
 
 [![](https://jitpack.io/v/thomhurst/RoundImageView.svg)](https://jitpack.io/#thomhurst/RoundImageView)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/d3ea7602a9fe4eef986dc303bda6f250)](https://www.codacy.com/app/thomhurst/RoundImageView?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=thomhurst/RoundImageView&amp;utm_campaign=Badge_Grade)
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-RoundImageView-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/7511)
+[![Android Weekly](https://img.shields.io/badge/Android%20Weekly-349-blue.svg)](http://androidweekly.net/issues/issue-349)
 
 ## Install
 
