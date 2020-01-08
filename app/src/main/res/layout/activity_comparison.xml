@@ -44,14 +44,14 @@ android:gravity="center_horizontal">
             android:layout_width="150dp"
             android:layout_height="150dp"
             app:riv_border_width="2dp"
-            app:riv_border_color="#000000">
+            app:riv_border_color="#000000"
+            app:riv_circle_placeholder_color="#000000"
+            app:riv_circle_placeholder_drawable="@drawable/ic_baseline_sentiment_very_satisfied_24px">
 
-            <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/ic_baseline_sentiment_very_satisfied_24px"
-                    android:tint="@android:color/black"
-                    android:scaleType="fitXY"/>
+        <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"/>
 
     </com.tomlonghurst.roundimageview.RoundImageView>
 
