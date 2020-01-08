@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.riv_layout.view.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlin.math.min
 import kotlin.math.roundToInt
 
 /**
@@ -23,6 +24,7 @@ import kotlin.math.roundToInt
 class RoundImageView : FrameLayout {
 
     private lateinit var view: View
+    @Suppress("MemberVisibilityCanBePrivate")
     var image: ImageView? = null
 
     constructor(context: Context) : super(context) {
@@ -42,7 +44,7 @@ class RoundImageView : FrameLayout {
 
         picture_card_circle_outline.apply {
             onGlobalLayout {
-                radius = Math.min(height, width).div(2).toFloat()
+                radius = min(height, width).div(2).toFloat()
             }
         }
     }
@@ -82,7 +84,7 @@ class RoundImageView : FrameLayout {
                 layoutParams.height = newHeight
                 layoutParams.width = newWidth
 
-                radius = Math.min(newHeight, newWidth).div(2).toFloat()
+                radius = min(newHeight, newWidth).div(2).toFloat()
                 requestLayout()
             }
         }
