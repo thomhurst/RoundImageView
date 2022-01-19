@@ -9,9 +9,9 @@ import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
+import com.tomlonghurst.roundimageview.databinding.RivLayoutBinding
 import com.tomlonghurst.roundimageview.extensions.onGlobalLayout
 import com.tomlonghurst.roundimageview.extensions.remove
-import kotlinx.android.synthetic.main.riv_layout.view.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -23,6 +23,7 @@ import kotlin.math.roundToInt
  */
 class RoundImageView : FrameLayout {
 
+    private lateinit var viewBinding: RivLayoutBinding
     private lateinit var view: View
     @Suppress("MemberVisibilityCanBePrivate")
     var image: ImageView? = null
@@ -39,10 +40,11 @@ class RoundImageView : FrameLayout {
 
     private fun init(attrs: AttributeSet?, defStyleAttr: Int) {
         view = LayoutInflater.from(context).inflate(R.layout.riv_layout, this)
+        viewBinding = RivLayoutBinding.inflate(LayoutInflater.from(context), this, true)
 
-        getAttributes(attrs, defStyleAttr)
+        setAttributes(attrs, defStyleAttr)
 
-        picture_card_circle_outline.apply {
+        viewBinding.pictureCardCircleOutline.apply {
             onGlobalLayout {
                 radius = min(height, width).div(2).toFloat()
             }
@@ -65,19 +67,19 @@ class RoundImageView : FrameLayout {
 
         setInnerCardSize(value)
 
-        picture_card_circle_outline.apply {
+        viewBinding.pictureCardCircleOutline.apply {
             onGlobalLayout {
                 if (value <= 0f) {
-                    picture_card_circle_outline.setCardBackgroundColor(Color.TRANSPARENT)
+                    viewBinding.pictureCardCircleOutline.setCardBackgroundColor(Color.TRANSPARENT)
                 } else {
-                    picture_card_circle_outline.setCardBackgroundColor(borderColor)
+                    viewBinding.pictureCardCircleOutline.setCardBackgroundColor(borderColor)
                 }
             }
         }
     }
 
     private fun setInnerCardSize(borderWidth: Float) {
-        picture_card_circle.apply {
+        viewBinding.pictureCardCircle.apply {
             onGlobalLayout {
                 val newHeight = view.height.minus(borderWidth.times(2).roundToInt())
                 val newWidth = view.width.minus(borderWidth.times(2).roundToInt())
@@ -94,14 +96,14 @@ class RoundImageView : FrameLayout {
         set(value) {
             field = value
 
-            picture_card_circle_outline.setCardBackgroundColor(value)
+            viewBinding.pictureCardCircleOutline.setCardBackgroundColor(value)
         }
 
     private var cardBackgroundColor: Int = Color.WHITE
         set(value) {
             field = value
 
-            picture_card_circle.setCardBackgroundColor(value)
+            viewBinding.pictureCardCircle.setCardBackgroundColor(value)
         }
 
     private var placeholderColor: Int = Int.MIN_VALUE
@@ -118,7 +120,7 @@ class RoundImageView : FrameLayout {
         GlobalScope.launch(Dispatchers.Main) {
             image.apply {
                 remove()
-                view.inner_circle_layout.addView(image)
+                viewBinding.innerCircleLayout.addView(image)
 
 
                 if (placeholderDrawable != -1) {
@@ -132,7 +134,7 @@ class RoundImageView : FrameLayout {
         }
     }
 
-    private fun getAttributes(attrs: AttributeSet?, defStyleAttr: Int) {
+    private fun setAttributes(attrs: AttributeSet?, defStyleAttr: Int) {
         val a = context.obtainStyledAttributes(attrs, R.styleable.RoundImageView, defStyleAttr, 0)
 
         borderWidth = a.getDimension(R.styleable.RoundImageView_riv_border_width, 0f)
